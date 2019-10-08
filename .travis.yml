@@ -8,6 +8,14 @@ branches:
     - master
 env:
   - project=webui
+jobs:
+ include:
+  - stage: build
+  - script: echo 'build'
+
+- stage: deploy
+  - script: echo "deploy"
+
 before_install:
   - echo 'before install'
   - echo `pwd`
@@ -15,9 +23,8 @@ install:
   - echo 'install'
 before_script:
   - echo "before script"
-script:
-  - echo "script"
 after_success:
   - echo "project is $project"
 after_script:
   - echo "version is $version"
+
