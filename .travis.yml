@@ -1,6 +1,8 @@
 language: node_js
 node_js: v12.11.1
-cache: npm
+cache:
+  directories:
+    - node_modules
 branches:
   except:
     - develop
@@ -8,6 +10,22 @@ branches:
     - master
 env:
   - project=webui
+
+stage:
+  - build
+  - test
+
+build:qa:
+  include:
+    stage: build
+  script:
+    - echo 'build'
+
+test:qa:
+  include:
+    stage: test
+  script:
+    - echo 'test'
 
 before_install:
   - echo 'before install'
