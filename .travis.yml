@@ -9,12 +9,12 @@ branches:
 env:
   - project=webui
 jobs:
- include:
-  - stage: build
-  - script: echo 'build'
+  include:
+    - stage: build
+    - script: echo 'build'
 
-- stage: deploy
-  - script: echo "deploy"
+    - stage: deploy
+    - script: echo "deploy"
 
 before_install:
   - echo 'before install'
@@ -27,4 +27,3 @@ after_success:
   - echo "project is $project"
 after_script:
   - echo "version is $version"
-
