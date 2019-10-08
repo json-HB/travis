@@ -1,0 +1,17 @@
+language: node_js
+branches:
+  except:
+    - develop
+  only:
+    - master
+env:
+  - project=webui
+before_install:
+  - echo 'before install'
+  - echo `pwd`
+install:
+  - echo 'install'
+before_script:
+  - echo "before script"
+script:
+  - echo "script"
