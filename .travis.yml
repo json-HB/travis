@@ -16,3 +16,11 @@ before_script:
   - echo "before script"
 script:
   - echo "script"
+after_success:
+  - echo "project is $project"
+deploy:
+  - echo "deploy"
+after_deploy:
+  - echo 'after deploy'
+after_script:
+  - echo "version is $version"
