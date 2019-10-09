@@ -28,7 +28,7 @@ include:
       file: dist/*.tar.gz
       skip_cleanup: true
       on:
-        tags: true
+        tags: false
 
 before_install:
   - npm i gulp-cli -g
