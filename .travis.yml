@@ -14,6 +14,9 @@ env:
 jobs:
 include:
   - stage: build
+    before_install:
+      - npm i gulp-cli -g
+      - npm i
     script:
       - echo "script"
       - gulp html
@@ -29,16 +32,3 @@ include:
       skip_cleanup: true
       on:
         tags: false
-
-before_install:
-  - npm i gulp-cli -g
-  - npm i
-install:
-  - echo 'install'
-before_script:
-  - echo "before script"
-
-after_success:
-  - echo "project is $project"
-after_script:
-  - echo "version is $version"
