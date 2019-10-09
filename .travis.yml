@@ -1,6 +1,7 @@
 language: node_js
 node_js: v12.11.1
 cache:
+  npm: true
   directories:
     - node_modules
 branches:
@@ -32,7 +33,7 @@ deploy:
   keep_history: true
   on:
     branch: master
-after_success:
-  - ssh root@39.100.150.76 -o StrictHostKeyChecking=no 'ls'
+# after_success:
+#   - ssh root@39.100.150.76 -o StrictHostKeyChecking=no 'ls'
 after_script:
   - echo "version is $version"
