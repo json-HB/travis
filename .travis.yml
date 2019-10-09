@@ -13,14 +13,14 @@ env:
 
 jobs:
 include:
-  - stage: test
-    script: echo "test"
   - stage: build
     script:
       - echo "script"
       - gulp html
       - ls
-      - tar zcvf travis.tar.gz -C dist .
+      - tar zcvf travis.tar.gz -C dist
+  - stage: test
+    script: echo "test"
   - stage: deploy
     deploy:
       provider: releases
