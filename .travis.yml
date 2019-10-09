@@ -22,15 +22,16 @@ before_script:
 script:
   - gulp html
   - ls
-  - tar -zcvf traivs.tar.gz -C dist .
-addons:
-  ssh_known_hosts:
-    - 39.100.150.76
+  # - tar -zcvf traivs.tar.gz -C dist .
+# addons:
+#   ssh_known_hosts:
+#     - 39.100.150.76
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: "$GITHUB_OAUTH_TOKEN"
-  keep_history: true
+  keep_history: false
+  local_dir: dist
   on:
     branch: master
 # after_success:
