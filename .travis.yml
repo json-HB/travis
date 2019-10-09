@@ -23,6 +23,9 @@ script:
   - gulp html
   - ls
   - tar -zcvf traivs.tar.gz -C dist .
+addons:
+  ssh_known_hosts:
+    - 39.100.150.76
 deploy:
   provider: pages
   skip_cleanup: true
