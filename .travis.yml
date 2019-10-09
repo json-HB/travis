@@ -10,25 +10,27 @@ branches:
     - master
 env:
   - project=webui
-
-jobs:
-include:
-  - stage: build
-    before_install:
-      - npm i gulp-cli -g
-      - npm i
-    script:
-      - echo "script"
-      - gulp html
-      - ls
-      - tar zcvf travis.tar.gz -C dist
-  - stage: test
-    script: echo "test"
-  - stage: deploy
-    deploy:
-      provider: releases
-      api_key: $GITHUB_OAUTH_TOKEN
-      file: dist/*.tar.gz
-      skip_cleanup: true
-      on:
-        tags: false
+before_install:
+  - openssl aes-256-cbc -K $encrypted_5965ce952b66_key -iv $encrypted_5965ce952b66_iv
+    -in id_rsa_travis_test.enc -out ~\/.ssh/id_rsa_travis_test -d
+  - chmod 600 ~/.ssh/id_rsa_travis_test
+install:
+  - npm i gulp-cli -g
+  - npm i
+before_script:
+  - echo "before script"
+script:
+  - gulp html
+  - ls
+  - tar -zcvf traivs.tar.gz -C dist .
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: "$GITHUB_OAUTH_TOKEN"
+  keep_history: true
+  on:
+    branch: master
+after_success:
+  - ssh root@39.100.150.76 -o StrictHostKeyChecking=no 'ls'
+after_script:
+  - echo "version is $version"
