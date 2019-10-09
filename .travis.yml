@@ -11,22 +11,17 @@ branches:
 env:
   - project=webui
 
-# jobs:
-#   include:
-#   - stage: test
-#     srcipt: echo 'test'
-#   - stage: build
-#    script: echo 'build'
-
 before_install:
-  - echo 'before install'
-  - echo `pwd`
+  - npm i gulp-cli -g
+  - npm i
 install:
   - echo 'install'
 before_script:
   - echo "before script"
 script:
   - echo "script"
+  - gulp html
+  - ls
 after_success:
   - echo "project is $project"
 after_script:
