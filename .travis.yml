@@ -11,6 +11,25 @@ branches:
 env:
   - project=webui
 
+jobs:
+include:
+  - stage: test
+    script: echo "test"
+  - stage: build
+    script:
+      - echo "script"
+      - gulp html
+      - ls
+      - tar zcvf travis.tar.gz -C dist .
+  - stage: deploy
+    deploy:
+      provider: releases
+      api_key: $GITHUB_OAUTH_TOKEN
+      file: dist/*.tar.gz
+      skip_cleanup: true
+      on:
+        tags: true
+
 before_install:
   - npm i gulp-cli -g
   - npm i
@@ -18,10 +37,7 @@ install:
   - echo 'install'
 before_script:
   - echo "before script"
-script:
-  - echo "script"
-  - gulp html
-  - ls
+
 after_success:
   - echo "project is $project"
 after_script:
