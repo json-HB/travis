@@ -11,12 +11,12 @@ branches:
 env:
   - project=webui
 
-jobs: 
-  include: 
-  - stage: test
-    srcipt: echo 'test'
-  - stage: build
-   script: echo 'build'
+# jobs:
+#   include:
+#   - stage: test
+#     srcipt: echo 'test'
+#   - stage: build
+#    script: echo 'build'
 
 before_install:
   - echo 'before install'
